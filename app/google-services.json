@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1058010303151",
+    "project_id": "simsim-b906f",
+    "storage_bucket": "simsim-b906f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058010303151:android:ef3fdd073961a6695ca25a",
+        "android_client_info": {
+          "package_name": "com.example.simsim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058010303151-gc8qu9ig0o45ethkda953ptga2bqru5u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.simsim",
+            "certificate_hash": "a28ebc24d1f1ce527ff3f6cfb2a7d1a3e5622860"
+          }
+        },
+        {
+          "client_id": "1058010303151-ug61obms7mqgk642gt4clsq4brooeae2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABMnSNI2j41F78Dk7hQe8yd7-9w-tqu9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058010303151-ug61obms7mqgk642gt4clsq4brooeae2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
