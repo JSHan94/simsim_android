@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/activity_home_scene"
+    tools:context=".HomeActivity">
+
+    <TextView
+        android:id="@+id/explainText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/eplainText3"
+        app:layout_constraintStart_toStartOf="@+id/tagEditText"
+        tools:layout_editor_absoluteY="343dp" />
+
+    <Button
+        android:id="@+id/tagBtn"
+        android:layout_width="120"
+        android:layout_height="40dp"
+        android:background="@drawable/radius"
+        android:text="@string/tagBtn"
+        app:layout_constraintEnd_toEndOf="@+id/noSimsimBtn"
+        app:layout_constraintTop_toTopOf="@+id/tagEditText" />
+
+    <Button
+        android:id="@+id/noSimsimBtn"
+        android:layout_width="150"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/radius"
+        android:text="@string/noSimsimBtn"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/simsimBtn" />
+
+    <Button
+        android:id="@+id/simsimBtn"
+        android:layout_width="150"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/radius"
+        android:text="@string/simsimBtn"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/explainText1" />
+
+    <TextView
+        android:id="@+id/explainText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/explainText1"
+        app:layout_constraintStart_toStartOf="@+id/simsimBtn"
+        tools:layout_editor_absoluteY="132dp" />
+
+    <TextView
+        android:id="@+id/explainText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/explaintText2"
+        app:layout_constraintStart_toStartOf="@+id/tagEditText"
+        tools:layout_editor_absoluteY="241dp" />
+
+    <TextView
+        android:id="@+id/settingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settingText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        tools:layout_editor_absoluteY="69dp" />
+
+    <TextView
+        android:id="@+id/homeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/homeText"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="69dp" />
+
+    <EditText
+        android:id="@+id/tagEditText"
+        android:layout_width="180"
+        android:layout_height="40"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:autofillHints=""
+        android:background="@drawable/radius"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/tagEditText"
+        app:layout_constraintEnd_toStartOf="@+id/tagBtn"
+        app:layout_constraintStart_toStartOf="@+id/simsimBtn"
+        app:layout_constraintTop_toBottomOf="@+id/explainText2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="381dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ListView
+        android:layout_width="411dp"
+        android:layout_height="352dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        tools:layout_editor_absoluteX="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
