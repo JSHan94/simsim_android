@@ -1,6 +1,7 @@
 package com.example.simsim.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.example.simsim.R;
 import com.example.simsim.dataclass.MatchData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MatchAdapter extends BaseAdapter {
 
@@ -23,14 +25,18 @@ public class MatchAdapter extends BaseAdapter {
     LayoutInflater mLayoutInflater = null;
     ArrayList<MatchData> data;
     private Button matchBtn;
-
+    private double userLongitude, userLatitude;
+    private List<Integer> distance;
     public MatchAdapter(){
 
     }
 
-    public MatchAdapter(Context context, ArrayList<MatchData> data){
+    public MatchAdapter(Context context, ArrayList<MatchData> data, List<Integer> distance){
         mContext = context;
         this.data = data;
+        this.distance = distance;
+//        this.userLatitude = userLatitude;
+//        this.userLongitude = userLongitude;
         mLayoutInflater = LayoutInflater.from(mContext);
     }
 
@@ -58,14 +64,15 @@ public class MatchAdapter extends BaseAdapter {
         TextView userTagView = (TextView) view.findViewById(R.id.userTag);
         Button matchBtn = (Button) view.findViewById(R.id.matchBtn);
 
-
-
         String tag = data.get(position).getTag();
         String userName = data.get(position).getUserName();
-        int distance = data.get(position).getDistance();
+        try{
+            userNameView.setText(userName+ " " + String.valueOf(distance.get(position)) + "km");
+            userTagView.setText(tag);
+        }catch(Exception e){
+            Log.e("Error in MatchAdapter", e.toString());
+        }
 
-        userNameView.setText(userName);
-        userTagView.setText(tag);
 
         return view;
     }

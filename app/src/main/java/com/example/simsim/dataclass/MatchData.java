@@ -1,14 +1,22 @@
 package com.example.simsim.dataclass;
 
+import com.example.simsim.adapter.MatchAdapter;
+
 public class MatchData {
     private String userName;
     private String tag;
-    private int distance;
+    private double latitude;
+    private double longitude;
 
-    public MatchData(String userName, String tag, int distance){
+    public MatchData(){
+
+    }
+    public MatchData(String userName, String tag, double latitude, double longitude){
         this.userName = userName;
         this.tag = tag;
-        this.distance = distance;
+        this.latitude =latitude;
+        this.longitude = longitude;
+
     }
 
     public String getUserName() {
@@ -26,12 +34,21 @@ public class MatchData {
     public void setTag(String tag) {
         this.tag = tag;
     }
-
-    public int getDistance() {
-        return distance;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setDistance(int distance) {
-        this.distance = distance;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+
+
 }
