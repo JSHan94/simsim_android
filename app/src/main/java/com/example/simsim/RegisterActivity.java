@@ -23,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseAuth mAuth;
 
     private EditText username, password;
+    private EditText nickname;
     private TextView signup,banner;
 
     @Override
@@ -33,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         username = (EditText) findViewById(R.id.register_username);
         password = (EditText) findViewById(R.id.register_password);
+        nickname = (EditText) findViewById(R.id.register_nickname);
 
         signup = (TextView) findViewById(R.id.signup);
         signup.setOnClickListener(this);
@@ -56,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void registerUser() {
         String email = username.getText().toString().trim();
         String pwd = password.getText().toString().trim();
+        String nick = nickname.getText().toString().trim();
 
         if(email.isEmpty()){
             username.setError("Email is required!");
@@ -71,12 +74,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             password.setError("Password is required!");
             password.requestFocus();
         }
+        if(nick.isEmpty()){
+            nickname.setError("Email is required!");
+            nickname.requestFocus();
+            return;
+        }
         mAuth.createUserWithEmailAndPassword(email,pwd)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>(){
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task){
                         if(task.isSuccessful()){
-                            User user = new User(email);
+                            User user = new User(email,nick);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

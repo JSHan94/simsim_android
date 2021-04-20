@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -53,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private DatabaseReference reference;
     private String userID;
 
-    private Button tagBtn;
+    private Button tagBtn, simsimBtn, nosimsimBtn;
     private EditText tagEditText;
 
     ArrayList<MatchData> matchDataList;
@@ -82,9 +87,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // xml views
         tagBtn = (Button) findViewById(R.id.tagBtn);
         tagEditText = (EditText) findViewById(R.id.tagEditText);
+        simsimBtn = (Button) findViewById(R.id.simsimBtn);
+        nosimsimBtn = (Button) findViewById(R.id.noSimsimBtn);
 
         //listener
         tagBtn.setOnClickListener(this);
+        simsimBtn.setOnClickListener(this);
+        nosimsimBtn.setOnClickListener(this);
 
         //firebase
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -95,19 +104,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             // MatchListView
             this.getMatchData();
         }
-
-
-
-
-
-
     }
 
     private void getMatchData() {
         matchDataList = new ArrayList<MatchData>();
         List<Integer> distanceList = new ArrayList<>();
         //get Matchdata , can change to addListenerForSingleValueEvent
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot item : snapshot.getChildren()) {
@@ -117,6 +120,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         String tag = item.child("match_data").child("tag").getValue(String.class);
                         double latitude = item.child("match_data").child("latitude").getValue(Double.class);
                         double longitude = item.child("match_data").child("longitude").getValue(Double.class);
+
                         matchDataList.add(new MatchData(name, tag, latitude, longitude));
                         Location friendLocation = new Location("friend");
                         friendLocation.setLatitude(latitude);
@@ -124,11 +128,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                         distanceList.add((int) location.distanceTo(friendLocation));
                     } catch (Exception e) {
-                        Log.e("Error", e.toString());
+                        Log.e("Error  in HomeActivity", e.toString());
                     }
                 }
                 ListView matchListView = (ListView) findViewById(R.id.matchListView);
-                final MatchAdapter matchAdapter = new MatchAdapter(getApplicationContext(), matchDataList,distanceList);
+                final MatchAdapter matchAdapter = new MatchAdapter(getApplicationContext(), matchDataList, distanceList);
 
                 matchListView.setAdapter(matchAdapter);
                 matchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -157,18 +161,50 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 tagUserInterest();
                 getMatchData();
                 break;
+            case R.id.simsimBtn:
+                updateUserStatus("simsim");
+                break;
+            case R.id.noSimsimBtn:
+                updateUserStatus("nosimsim");
+                break;
         }
+    }
+
+    private void updateUserStatus(String status){
+        Log.d("Log in HomeActivity", "updateUserStatus : " + status );
+        reference.child(user.getUid()).child("match_data").child("status").setValue(status);
+
     }
 
     private void tagUserInterest() {
         String tag = tagEditText.getText().toString();
+
+        //need to fix!
+        final String nickname;
 
         userLatitude = location.getLatitude();
         userLongitude = location.getLongitude();
         location.setLatitude(userLatitude);
         location.setLongitude(userLongitude);
 
-        MatchData matchdata = new MatchData("준수",tag,userLatitude,userLongitude);
+        Log.d("firebase","is it called?");
+        //userName은 로그인한 계정의 이름으로로
+        reference.child(user.getUid()).child("nickname").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    //need to fix!
+                    //nickname = String.valueOf(task.getResult().getValue());
+                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                }
+            }
+        });
+        MatchData matchdata = new MatchData(nickname[0],tag,userLatitude,userLongitude);
         reference.child(user.getUid()).child("match_data").setValue(matchdata);
+        reference.child(user.getUid()).child("match_data").child("status").setValue("simsim");
     }
 }

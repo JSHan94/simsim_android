@@ -59,21 +59,20 @@ public class MatchAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = mLayoutInflater.inflate(R.layout.row,null);
 
-
-        TextView userNameView = (TextView) view.findViewById(R.id.userName);
-        TextView userTagView = (TextView) view.findViewById(R.id.userTag);
-        Button matchBtn = (Button) view.findViewById(R.id.matchBtn);
-
-        String tag = data.get(position).getTag();
-        String userName = data.get(position).getUserName();
         try{
-            userNameView.setText(userName+ " " + String.valueOf(distance.get(position)) + "km");
+            TextView userNameView = (TextView) view.findViewById(R.id.userName);
+            TextView userTagView = (TextView) view.findViewById(R.id.userTag);
+            Button matchBtn = (Button) view.findViewById(R.id.matchBtn);
+
+            String tag = data.get(position).getTag();
+            String userName = data.get(position).getUserName();
+
+            userNameView.setText(userName+ " " + String.valueOf(distance.get(position)/1000) + "km");
             userTagView.setText(tag);
+
         }catch(Exception e){
             Log.e("Error in MatchAdapter", e.toString());
         }
-
-
         return view;
     }
 }
