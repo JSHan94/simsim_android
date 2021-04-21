@@ -20,13 +20,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.simsim.adapter.MatchAdapter;
+import com.example.simsim.dataclass.G;
 import com.example.simsim.dataclass.MatchData;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -60,6 +63,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button tagBtn, simsimBtn, nosimsimBtn;
     private EditText tagEditText;
+    private ImageView homeIcon,settingIcon;
 
     ArrayList<MatchData> matchDataList;
 
@@ -89,11 +93,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         tagEditText = (EditText) findViewById(R.id.tagEditText);
         simsimBtn = (Button) findViewById(R.id.simsimBtn);
         nosimsimBtn = (Button) findViewById(R.id.noSimsimBtn);
+        homeIcon = (ImageView) findViewById(R.id.homeIcon);
+        settingIcon = (ImageView) findViewById(R.id.settingIcon);
 
         //listener
         tagBtn.setOnClickListener(this);
         simsimBtn.setOnClickListener(this);
         nosimsimBtn.setOnClickListener(this);
+        homeIcon.setOnClickListener(this);
 
         //firebase
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -103,7 +110,22 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
             // MatchListView
             this.getMatchData();
+
+            //userName은 로그인한 계정의 이름으로로
+            reference.child(user.getUid()).child("nickname").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        G.nickName=String.valueOf(task.getResult().getValue());
+                    }
+                }
+            });
         }
+
+
     }
 
     private void getMatchData() {
@@ -115,18 +137,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot item : snapshot.getChildren()) {
                     try {
-                        //getKey != uid
-                        String name = item.child("match_data").child("userName").getValue(String.class);
-                        String tag = item.child("match_data").child("tag").getValue(String.class);
-                        double latitude = item.child("match_data").child("latitude").getValue(Double.class);
-                        double longitude = item.child("match_data").child("longitude").getValue(Double.class);
+                        if(item.child("match_data").child("status").getValue(String.class).equals("simsim")) {
+                            String name = item.child("match_data").child("userName").getValue(String.class);
+                            String tag = item.child("match_data").child("tag").getValue(String.class);
+                            double latitude = item.child("match_data").child("latitude").getValue(Double.class);
+                            double longitude = item.child("match_data").child("longitude").getValue(Double.class);
 
-                        matchDataList.add(new MatchData(name, tag, latitude, longitude));
-                        Location friendLocation = new Location("friend");
-                        friendLocation.setLatitude(latitude);
-                        friendLocation.setLongitude(longitude);
+                            matchDataList.add(new MatchData(name, tag, latitude, longitude));
+                            Location friendLocation = new Location("friend");
+                            friendLocation.setLatitude(latitude);
+                            friendLocation.setLongitude(longitude);
 
-                        distanceList.add((int) location.distanceTo(friendLocation));
+                            distanceList.add((int) location.distanceTo(friendLocation));
+                        }
                     } catch (Exception e) {
                         Log.e("Error  in HomeActivity", e.toString());
                     }
@@ -163,13 +186,22 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.simsimBtn:
                 updateUserStatus("simsim");
+                getMatchData();
                 break;
             case R.id.noSimsimBtn:
                 updateUserStatus("nosimsim");
+                getMatchData();
+                break;
+            case R.id.homeIcon:
+                goChattingRoom();
                 break;
         }
     }
 
+    private void goChattingRoom(){
+        Intent intent = new Intent(this, ChatEnterActivity.class);
+        startActivity(intent);
+    }
     private void updateUserStatus(String status){
         Log.d("Log in HomeActivity", "updateUserStatus : " + status );
         reference.child(user.getUid()).child("match_data").child("status").setValue(status);
@@ -179,32 +211,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private void tagUserInterest() {
         String tag = tagEditText.getText().toString();
 
-        //need to fix!
-        final String nickname;
-
         userLatitude = location.getLatitude();
         userLongitude = location.getLongitude();
         location.setLatitude(userLatitude);
         location.setLongitude(userLongitude);
 
-        Log.d("firebase","is it called?");
-        //userName은 로그인한 계정의 이름으로로
-        reference.child(user.getUid()).child("nickname").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    //need to fix!
-                    //nickname = String.valueOf(task.getResult().getValue());
-                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                }
-            }
-        });
-        MatchData matchdata = new MatchData(nickname[0],tag,userLatitude,userLongitude);
+        MatchData matchdata = new MatchData(G.nickName,tag,userLatitude,userLongitude);
         reference.child(user.getUid()).child("match_data").setValue(matchdata);
         reference.child(user.getUid()).child("match_data").child("status").setValue("simsim");
+
+        InputMethodManager imm=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+
     }
 }

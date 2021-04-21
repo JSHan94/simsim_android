@@ -1,6 +1,7 @@
 package com.example.simsim.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +36,6 @@ public class MatchAdapter extends BaseAdapter {
         mContext = context;
         this.data = data;
         this.distance = distance;
-//        this.userLatitude = userLatitude;
-//        this.userLongitude = userLongitude;
         mLayoutInflater = LayoutInflater.from(mContext);
     }
 
@@ -70,6 +69,17 @@ public class MatchAdapter extends BaseAdapter {
             userNameView.setText(userName+ " " + String.valueOf(distance.get(position)/1000) + "km");
             userTagView.setText(tag);
 
+            matchBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (matchBtn.getText()=="매치 신청 중"){
+                        matchBtn.setText("매치");
+                    }else{
+                        matchBtn.setText("매치 신청 중");
+                    }
+
+                }
+            });
         }catch(Exception e){
             Log.e("Error in MatchAdapter", e.toString());
         }

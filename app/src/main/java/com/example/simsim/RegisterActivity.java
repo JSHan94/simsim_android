@@ -3,10 +3,12 @@ package com.example.simsim;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -94,6 +96,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                     if(task.isSuccessful()){
                                         Toast.makeText(RegisterActivity.this,"User has been registered successfully!",Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                        InputMethodManager imm=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
                                     }else{
                                         Toast.makeText(RegisterActivity.this,"Failed to register! Try again",Toast.LENGTH_LONG).show();
                                     }

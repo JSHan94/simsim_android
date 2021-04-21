@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp">
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
@@ -18,27 +19,26 @@
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/userTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="TextView" />
     </LinearLayout>
 
     <Button
         android:id="@+id/matchBtn"
-        android:layout_width="1dp"
-        android:layout_height="37dp"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:layout_weight="3"
-        android:text="@string/matchBtn">
+        android:text="@string/matchBtn"
+        >
 
     </Button>
 

@@ -3,10 +3,12 @@ package com.example.simsim;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -74,6 +76,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(task.isSuccessful()){
                     //redirect to user profile
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    InputMethodManager imm=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
                 }else{
                     Toast.makeText(LoginActivity.this,"Failed to login! please check your credentials",Toast.LENGTH_LONG).show();
                 }
