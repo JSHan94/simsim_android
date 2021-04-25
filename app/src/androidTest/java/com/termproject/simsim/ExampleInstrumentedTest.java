@@ -1,4 +1,4 @@
-package com.example.simsim;
+package com.termproject.simsim;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.simsim", appContext.getPackageName());
+        assertEquals("com.termproject.simsim", appContext.getPackageName());
     }
 }

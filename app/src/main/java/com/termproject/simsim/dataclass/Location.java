@@ -1,4 +1,4 @@
-package com.example.simsim.dataclass;
+package com.termproject.simsim.dataclass;
 
 public class Location {
     public Long latitude, longitude;

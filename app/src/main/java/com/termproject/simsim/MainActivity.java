@@ -1,4 +1,4 @@
-package com.example.simsim;
+package com.termproject.simsim;
 
 import androidx.appcompat.app.AppCompatActivity;
 

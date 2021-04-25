@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1058010303151:android:ef3fdd073961a6695ca25a",
         "android_client_info": {
-          "package_name": "com.example.simsim"
+          "package_name": "com.termproject.simsim"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "1058010303151-gc8qu9ig0o45ethkda953ptga2bqru5u.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.simsim",
+            "package_name": "com.termproject.simsim",
             "certificate_hash": "a28ebc24d1f1ce527ff3f6cfb2a7d1a3e5622860"
           }
         },

@@ -1,4 +1,4 @@
-package com.example.simsim.adapter;
+package com.termproject.simsim.adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.simsim.R;
-import com.example.simsim.dataclass.G;
-import com.example.simsim.dataclass.MessageItem;
+import com.termproject.simsim.R;
+import com.termproject.simsim.dataclass.G;
+import com.termproject.simsim.dataclass.MessageItem;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,7 @@
-package com.example.simsim.dataclass;
-
-import com.example.simsim.adapter.MatchAdapter;
+package com.termproject.simsim.dataclass;
 
 public class MatchData {
-    private String userName;
+    private String userName,time,status;
     private String tag;
     private double latitude;
     private double longitude;
@@ -16,7 +14,38 @@ public class MatchData {
         this.tag = tag;
         this.latitude =latitude;
         this.longitude = longitude;
+    }
 
+    public MatchData(String userName, String tag, double latitude, double longitude, String time){
+        this.userName = userName;
+        this.tag = tag;
+        this.latitude =latitude;
+        this.longitude = longitude;
+        this.time = time;
+    }
+    public MatchData(String userName, String tag, double latitude, double longitude, String time,String status){
+        this.userName = userName;
+        this.tag = tag;
+        this.latitude =latitude;
+        this.longitude = longitude;
+        this.time = time;
+        this.status =status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getUserName() {

@@ -1,4 +1,4 @@
-package com.example.simsim.dataclass;
+package com.termproject.simsim.dataclass;
 
 public class MessageItem {
     String name, message, time;

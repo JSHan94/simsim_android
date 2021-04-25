@@ -61,7 +61,7 @@
         android:layout_marginTop="30dp"
         android:text="@string/explainText1"
         app:layout_constraintStart_toStartOf="@+id/simsimBtn"
-        app:layout_constraintTop_toBottomOf="@+id/homeText" />
+        app:layout_constraintTop_toBottomOf="@+id/chatText" />
 
     <TextView
         android:id="@+id/explainText2"
@@ -83,10 +83,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/homeText"
+        android:id="@+id/chatText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/homeText"
+        android:text="채팅"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/settingText" />
@@ -131,16 +131,16 @@
         />
 
     <ImageView
-        android:id="@+id/homeIcon"
+        android:id="@+id/chatIcon"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/homeText"
+        app:layout_constraintBottom_toTopOf="@+id/chatText"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.766"
-        app:srcCompat="@drawable/home" />
+        app:srcCompat="@drawable/chat" />
 
     <ImageView
         android:id="@+id/settingIcon"

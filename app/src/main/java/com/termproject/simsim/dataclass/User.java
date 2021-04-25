@@ -1,6 +1,4 @@
-package com.example.simsim.dataclass;
-
-import java.util.List;
+package com.termproject.simsim.dataclass;
 
 public class User {
 

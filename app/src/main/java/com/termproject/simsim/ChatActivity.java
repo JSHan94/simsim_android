@@ -1,4 +1,4 @@
-package com.example.simsim;
+package com.termproject.simsim;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,14 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.simsim.adapter.ChatAdapter;
-import com.example.simsim.dataclass.G;
-import com.example.simsim.dataclass.MessageItem;
+import com.termproject.simsim.adapter.ChatAdapter;
+import com.termproject.simsim.dataclass.G;
+import com.termproject.simsim.dataclass.MessageItem;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -94,8 +93,8 @@ public class ChatActivity extends AppCompatActivity {
 
         et.setText("");
 
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
 
     }
 }

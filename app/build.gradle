@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.simsim"
+        applicationId "com.termproject.simsim"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -26,6 +26,11 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions{
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
