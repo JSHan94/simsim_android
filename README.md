@@ -4,6 +4,8 @@
 
 # Develop History
 
+21.05.11 : Google Timeline 핸들링 개발 (https://github.com/JSHan94/googleTimeline)
+
 21.05.02 : Readme 수정
 
 21.04.30 : Readme 작성
