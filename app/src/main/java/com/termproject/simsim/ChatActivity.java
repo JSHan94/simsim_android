@@ -40,7 +40,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        getSupportActionBar().setTitle(G.nickName);
+        getSupportActionBar().setTitle(getString(R.string.roomName) + " 채팅방");
 
         et=findViewById(R.id.et);
         listView=findViewById(R.id.listview);

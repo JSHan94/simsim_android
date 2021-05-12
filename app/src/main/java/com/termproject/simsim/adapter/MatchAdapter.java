@@ -96,10 +96,7 @@ public class MatchAdapter extends BaseAdapter {
     }
 
     private String calTimeDiff(Date cur, Date pre){
-        Log.d("curTime",String.valueOf(cur.getTime()));
-        Log.d("preTime",String.valueOf(pre.getTime()));
         long millis = cur.getTime() - pre.getTime();
-
         long mins = (millis/ (60 * 1000) % 60);
 
         String diff = String.valueOf(mins);

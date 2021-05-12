@@ -29,4 +29,5 @@
     <string name="homeText">홈</string>
     <string name="settingText">설정</string>
     <string name="matchBtn">매치</string>
+    <string name="roomName">모바일 &amp; 유비쿼터스</string>
 </resources>

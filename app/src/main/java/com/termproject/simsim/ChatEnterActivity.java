@@ -6,10 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.termproject.simsim.dataclass.G;
 
 public class ChatEnterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button enterBtn,leaveBtn;
+    private TextView roomName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +26,7 @@ public class ChatEnterActivity extends AppCompatActivity implements View.OnClick
         enterBtn.setOnClickListener(this);
         leaveBtn.setOnClickListener(this);
 
+        getSupportActionBar().setTitle("채팅 입장");
     }
 
     @Override

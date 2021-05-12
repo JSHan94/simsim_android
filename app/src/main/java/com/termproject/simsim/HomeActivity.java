@@ -108,6 +108,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     }
                     else {
                         G.nickName=String.valueOf(task.getResult().getValue());
+                        getSupportActionBar().setTitle(G.nickName);
                     }
                 }
             });
@@ -171,6 +172,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.simsimBtn:
                 updateUserStatus("simsim");
                 getMatchData();
+                Intent intent = new Intent(this, PopupActivity.class);
+                intent.putExtra("data", "헬스장");
+                intent.putExtra("weekofday", getDayOfWeek());
+                intent.putExtra("time", getHourMin());
+                startActivityForResult(intent, 1);
+
                 break;
             case R.id.noSimsimBtn:
                 updateUserStatus("nosimsim");
@@ -220,7 +227,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         Date date = calendar.getTime();
         sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
-//        Log.d("getDate()",String.valueOf(date.getTime()));
+        String dateResult = sdf.format(date);
+        return dateResult;
+    }
+
+    private String getHourMin(){
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm", Locale.KOREA);
+        Calendar calendar = Calendar.getInstance();
+
+        Date date = calendar.getTime();
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
         String dateResult = sdf.format(date);
         return dateResult;
     }
@@ -229,7 +245,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
         String dayOfWeek = new SimpleDateFormat("EEEE", Locale.KOREA).format(date.getTime());
-        //Log.d("getDayOfWeek", dayOfWeek);
         return dayOfWeek;
     }
 

@@ -42,18 +42,17 @@
 
     <TextView
         android:id="@+id/roomName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="264dp"
-        android:background="@drawable/back_et_name"
-        android:ems="10"
+        android:layout_width="243dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="260dp"
+        android:background="#FFFFFF"
         android:gravity="center"
-
         android:inputType="text"
-        android:maxLength="10"
         android:padding="8dp"
+        android:text="@string/roomName"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
