@@ -4,6 +4,8 @@
 
 # Develop History
 
+21.05.16 : Google Timeline과 벤치마크한 Simsim logging 기능을 활용하여 위치 기록 분석  
+
 21.05.11 : Google Timeline 핸들링 개발 (https://github.com/JSHan94/googleTimeline)
 
 21.05.02 : Readme 수정
