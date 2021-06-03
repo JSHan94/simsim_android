@@ -19,7 +19,7 @@
     <string name="login_failed">"Login failed"</string>
 
 
-    <string name="eplainText3">지금 \'심심해요\' 누른 친구들</string>
+    <string name="eplainText3">지금 당장 놀 수 있는 친구들</string>
     <string name="tagBtn">추가</string>
     <string name="noSimsimBtn">괜찮아요</string>
     <string name="simsimBtn">심심해요</string>
@@ -30,4 +30,13 @@
     <string name="settingText">설정</string>
     <string name="matchBtn">매치</string>
     <string name="roomName">모바일 &amp; 유비쿼터스</string>
+    <string name="title_activity_vacation">VacationActivity</string>
+    <string name="vacationInfo">
+        \n
+        05:00 ~ 06:00 - 강릉 출발\n
+        06:00 ~ 11:00 - 하야트 펜션 도착\n
+        11:00 ~ 18:00 - 자유시간\n
+        19:00 ~ 20:00 - 강릉 야시장 개장\n
+        21:00 ~ 22:00 - 강릉시 불꽃놀이 축제\n
+    </string>
 </resources>

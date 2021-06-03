@@ -43,6 +43,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -58,7 +59,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button tagBtn, simsimBtn, nosimsimBtn;
     private EditText tagEditText;
-    private ImageView chatIcon,settingIcon;
+    private ImageView chatIcon,settingIcon, vacationIcon;
 
     ArrayList<MatchData> matchDataList;
 
@@ -83,12 +84,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         nosimsimBtn = (Button) findViewById(R.id.noSimsimBtn);
         chatIcon = (ImageView) findViewById(R.id.chatIcon);
         settingIcon = (ImageView) findViewById(R.id.settingIcon);
+        vacationIcon = (ImageView) findViewById(R.id.vacationIcon);
 
         //listener
         tagBtn.setOnClickListener(this);
         simsimBtn.setOnClickListener(this);
         nosimsimBtn.setOnClickListener(this);
         chatIcon.setOnClickListener(this);
+        vacationIcon.setOnClickListener(this);
 
         //firebase
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -118,8 +121,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getMatchData() {
-
-
         matchDataList = new ArrayList<MatchData>();
         List<Integer> distanceList = new ArrayList<>();
         //get Matchdata , can change to addListenerForSingleValueEvent
@@ -164,6 +165,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()) {
             case R.id.tagBtn:
                 tagUserInterest();
@@ -172,19 +174,26 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.simsimBtn:
                 updateUserStatus("simsim");
                 getMatchData();
-                Intent intent = new Intent(this, PopupActivity.class);
-                intent.putExtra("data", "헬스장");
+                intent = new Intent(this, PopupActivity.class);
+                String[] array = new String[]{"헬스", "게임", "영화", "카페"};
+                int rnd = new Random().nextInt(array.length);
+                String suggest = array[rnd];
+                intent.putExtra("data", suggest);
                 intent.putExtra("weekofday", getDayOfWeek());
                 intent.putExtra("time", getHourMin());
                 startActivityForResult(intent, 1);
-
                 break;
+
             case R.id.noSimsimBtn:
                 updateUserStatus("nosimsim");
                 getMatchData();
                 break;
             case R.id.chatIcon:
                 goChattingRoom();
+                break;
+            case R.id.vacationIcon:
+                intent = new Intent(this, VacationActivity.class);
+                startActivityForResult(intent, 1);
                 break;
         }
     }
@@ -207,7 +216,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         userLongitude = location.getLongitude();
         location.setLatitude(userLatitude);
         location.setLongitude(userLongitude);
-
 
 
         MatchData matchdata = new MatchData(G.nickName,tag,userLatitude,userLongitude,time,"simsim");
