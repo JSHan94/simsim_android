@@ -1,8 +1,10 @@
 # simsim_android
 
-유비쿼터스 & 모바일 컴퓨팅 Project
+유비쿼터스 & 모바일 컴퓨팅 Term Project
 
 # Develop History
+
+21.06.03 : Private Link, Vacation suggestor 개발
 
 21.06.01 : 코드 리뷰 (논문 제출로 한동안 개발을 못했음)
 
